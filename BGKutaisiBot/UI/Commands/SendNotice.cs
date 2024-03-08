@@ -1,4 +1,5 @@
 ﻿using BGKutaisiBot.Types;
+using System.Globalization;
 using Telegram.Bot;
 using Telegram.Bot.Types.Enums;
 
@@ -18,7 +19,7 @@ namespace BGKutaisiBot.UI.Commands
 
 			async Task Function(string[] args)
 			{
-				await new TextMessage(string.Format(TEXT_MESSAGE, DateTime.Now.ToString("dMMMMyyyy"),
+				await new TextMessage(string.Format(TEXT_MESSAGE, DateTime.Now.ToString("dMMMMyyyy", System.Globalization.CultureInfo.GetCultureInfo("ru-RU")),
 					Environment.GetEnvironmentVariable("NOTICE_FAQ_MESSAGE_ID") ?? "0", args.Length == 1 ? "" : $"и открытый [опрос по играм](t.me/bg\\_kutaisi/{args[1]}) ")) 
 					{ ParseMode = ParseMode.MarkdownV2 }.SendTextMessageAsync(args[0], this.BotClient);
 			}
